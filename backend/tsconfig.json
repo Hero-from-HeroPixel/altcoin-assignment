@@ -14,15 +14,16 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "noImplicitAny": true,
     "noEmitOnError": true,
     "isolatedModules": true, // Required for ESM + ts-node compatibility
-    "verbatimModuleSyntax": true // Maintains ESM-style imports
   },
   "include": [
-    "src"
+    "src/**/*.ts",
+    "tests/**/*.test.ts"
   ],
   "exclude": [
     "node_modules",
