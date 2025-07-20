@@ -6,7 +6,7 @@ A take-home project that fetches historical price data for a specified altcoin u
 
 ## 🚀 Features
 
-- Fetch price history of any altcoin via CoinGecko
+- Fetch currency data of crypto currencies via CoinGecko
 - Modular frontend/backend architecture
 - Redis for caching
 - MariaDB to store snapshots of requested data
@@ -46,7 +46,7 @@ Install frontend deps:
 cd frontend/coin_trade_app && pnpm install
 ```
 
-Install backend deps:
+Open a new terminal and install backend deps:
 
 ```bash
 cd backend && pnpm install
@@ -56,6 +56,12 @@ cd backend && pnpm install
 
 ---
 Docker compose variables:
+
+Navigate to root of repo:
+
+```bash
+cd ../
+```
 
 Create a `.env` file in the root directory with the following:
 
