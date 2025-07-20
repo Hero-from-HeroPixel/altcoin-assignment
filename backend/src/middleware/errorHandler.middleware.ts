@@ -16,15 +16,15 @@ import type { Response, Request, NextFunction } from 'express'
 import ExpressError from '../utils/ExpressError.util.ts'
 
 // Middleware to catch undefined routes and forward a 404 error
-export const notFound = (req: Request, res: Response, next: NextFunction) =>
+export const notFound = (_req: Request, _res: Response, next: NextFunction) =>
     next(new ExpressError('Route not found', 404))
 
 // Global error-handling middleware
 export const expressErrHandler = (
     err: ExpressError,
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ) => {
     const { statusCode = 500 } = err
     const message = err.message ?? 'Oh no! Something went wrong'
