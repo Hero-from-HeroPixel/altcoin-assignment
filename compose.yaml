@@ -2,14 +2,15 @@
 
 services:
     db:
-        image: mariadb
+        image: mariadb:10.6-ubi
         restart: always
+        volumes:
+            - mariadb_data:/var/lib/mysql
         ports:
             - 3306:3306
         environment:
             MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MARIADB_USER: ${DB_USER}
-            MARIADB_PASSWORD: ${DB_PASSWORD}
+            MARIADB_DATABASE: ${DB_NAME}
         healthcheck:
             test:
                 [
@@ -25,19 +26,15 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
-    cache:
+    redis:
         image: redis:7.4.5-alpine
         restart: always
         ports:
             - "6379:6379"
         command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
         volumes:
-            - cache:/data
+            - redis:/data
 volumes:
-    cache:
+    redis:
         driver: local
-    # adminer:
-    #     image: adminer
-    #     restart: always
-    #     ports:
-    #         - 8080:8080
+    mariadb_data:
