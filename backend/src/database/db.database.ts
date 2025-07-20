@@ -31,9 +31,6 @@ try {
 
 /**
  * @description Attempts to connect to database. 
- * Always returns an instance even if connection fails. 
- * Instance can still be used to debug connection issues.
- * @returns database client instance. 
  */
 const dbConnect = async () => {
     try {
