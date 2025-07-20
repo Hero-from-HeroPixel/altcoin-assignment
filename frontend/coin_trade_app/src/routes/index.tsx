@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import DataTable from "../components/table/DataTable";
+import DataTable from "../components/Table/DataTable";
 import { useGetCrypto } from "../hooks/useGetCrypto";
 
 export const Route = createFileRoute("/")({
