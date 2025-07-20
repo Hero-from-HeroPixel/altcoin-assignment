@@ -5,10 +5,8 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "node --import tsx --test src/tests/**/*.test.ts",
-    "start": "node dist.server.js",
-    "lint": "eslint .",
-    "build": "tsc",
-    "dev": "node --watch --experimental-strip-types src/server.ts"
+    "start": "node --watch --experimental-strip-types src/server.ts",
+    "lint": "eslint ."
   },
   "type": "module",
   "keywords": [],
