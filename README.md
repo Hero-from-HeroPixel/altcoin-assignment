@@ -43,7 +43,7 @@ Both the frontend and backend use Node.js. From the root directory, run:
 Install frontend deps:
 
 ```bash
-cd frontend/coin_trading_app && pnpm install
+cd frontend/coin_trade_app && pnpm install
 ```
 
 Install backend deps:
