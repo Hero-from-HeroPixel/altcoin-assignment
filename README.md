@@ -104,6 +104,12 @@ Adjust any other required variables based on your project logic.
 
 ### 4. Run the App
 
+0. Start mariadb & redis using docker compose (Optional)
+
+```bash
+docker compose up -d
+```
+
 1. Start backend server
 
 ```bash
