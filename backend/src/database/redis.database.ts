@@ -9,9 +9,6 @@ redis.on('error', err => console.log('Redis Client Error', err));
 
 /**
  * @description Attempts to connect to redis. 
- * Always returns an instance even if connection fails. 
- * Instance can still be used to debug connection issues.
- * @returns redis client instance. 
  */
 async function redisConnect() {
     if (redis.isOpen) {
@@ -21,11 +18,10 @@ async function redisConnect() {
         await redis.connect();
         await redis.ping();
         console.log("Connected to Redis");
+        return redis;
     } catch (error) {
         console.debug('Redis connection failed.');
         console.error(error)
-    } finally {
-        return redis;
     }
 }
 

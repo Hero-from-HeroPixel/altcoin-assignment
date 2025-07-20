@@ -31,18 +31,14 @@ try {
 
 /**
  * @description Attempts to connect to database. 
- * Always returns an instance even if connection fails. 
- * Instance can still be used to debug connection issues.
- * @returns database client instance. 
  */
 const dbConnect = async () => {
     try {
         await sequelize.authenticate();
         console.log('DB connected successfully.');
+        return sequelize
     } catch (error) {
         console.error('Unable to connect to the database:', error);
-    } finally {
-        return sequelize
     }
 }
 
