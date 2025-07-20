@@ -29,7 +29,8 @@ export async function getCoins(params: typeof getCoinsDefaultParams = getCoinsDe
                 per_page: params.pageLength,
                 page: params.page,
                 locale: 'en',
-                precision: params.currencyPrecision
+                precision: params.currencyPrecision,
+                order: 'market_cap_desc'
             }
         })
         const data = res.data
