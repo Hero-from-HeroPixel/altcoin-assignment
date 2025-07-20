@@ -4,6 +4,7 @@ import { dbClient } from "../database/db.database.ts";
 /**
  * @description Any currency type fields use ZAR as a currency
  * @property {number} id - Primary key. IMO it is better to use integers for primary keys instead of strings (natural keys)
+ * @property {string} nameIdentifier - Name identifier retrieved from API.
  * @property {string} name - Unique coin name
  * @property {string} symbol - Symbol for the coin. Must be unique
  * @property {string} image - Coin logo/image url
@@ -14,15 +15,19 @@ import { dbClient } from "../database/db.database.ts";
 
 type CoinAttributes = {
     id: number
+    nameIdentifier: string
     name: string
     symbol: string
     image?: string
     currentPrice: number
     marketCap: number
     marketCapRank?: number
+    priceChangePercentage24h: number
+    high24h: number
+    low24h: number
 }
 
-type CoinCreationAttributes = Optional<CoinAttributes, 'id'>;
+export type CoinCreationAttributes = Optional<CoinAttributes, 'id'>;
 
 export class Coin extends Model<CoinAttributes, CoinCreationAttributes> {
     static async bulkCreateOrUpdate(items: CoinCreationAttributes[]) {
@@ -54,6 +59,10 @@ await Coin.init({
         autoIncrement: true,
         primaryKey: true
     },
+    nameIdentifier: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -77,6 +86,15 @@ await Coin.init({
     },
     marketCapRank: {
         type: DataTypes.INTEGER.UNSIGNED,
+    },
+    priceChangePercentage24h: {
+        type: DataTypes.FLOAT
+    },
+    high24h: {
+        type: DataTypes.BIGINT
+    },
+    low24h: {
+        type: DataTypes.BIGINT
     }
 }, {
     sequelize: dbClient,
