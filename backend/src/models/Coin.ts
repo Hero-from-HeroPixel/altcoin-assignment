@@ -67,9 +67,11 @@ type CoinAttributes = {
 
 export type CoinCreationAttributes = Optional<CoinAttributes, 'id'>;
 
+if (!dbClient) throw new Error('Cannot instantiate Coin class without db connection')
+
 export class Coin extends Model<CoinAttributes, CoinCreationAttributes> {
     static async bulkCreateOrUpdate(items: CoinCreationAttributes[]) {
-        let coins: Coin[] = []
+        const coins: Coin[] = []
         for (const item of items) {
             coins.push(await Coin.createOrUpdate(item))
         }
