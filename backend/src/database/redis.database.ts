@@ -21,11 +21,10 @@ async function redisConnect() {
         await redis.connect();
         await redis.ping();
         console.log("Connected to Redis");
+        return redis;
     } catch (error) {
         console.debug('Redis connection failed.');
         console.error(error)
-    } finally {
-        return redis;
     }
 }
 

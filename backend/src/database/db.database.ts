@@ -39,10 +39,9 @@ const dbConnect = async () => {
     try {
         await sequelize.authenticate();
         console.log('DB connected successfully.');
+        return sequelize
     } catch (error) {
         console.error('Unable to connect to the database:', error);
-    } finally {
-        return sequelize
     }
 }
 
