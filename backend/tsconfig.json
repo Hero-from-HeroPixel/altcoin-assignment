@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Supports modern JS features
+    "module": "ESNext", // Required for ESM
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": [
+      "node"
+    ],
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "isolatedModules": true, // Required for ESM + ts-node compatibility
+    "verbatimModuleSyntax": true // Maintains ESM-style imports
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
