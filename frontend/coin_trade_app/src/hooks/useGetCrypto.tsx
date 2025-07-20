@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
 import { apiClient } from "../utils/apiClient";
+import useSWR from "swr";
 
 export function useGetCrypto() {
-    const [data, setData] = useState<GetCryptoResponse>();
-    useEffect(() => {
-        const fetchCryptos = async () => {
-            const response = await apiClient.get<GetCryptoResponse>("cryptos");
-            setData(response.data);
-        };
+    const fetcher = async (url: string) =>
+        await apiClient.get(url).then((res) => res.data);
+    const { data, error, isLoading, mutate } = useSWR<GetCryptoResponse>(
+        "/cryptos",
+        fetcher
+    );
 
-        fetchCryptos();
-    }, []);
-
-    return { data };
+    return { data, error, isLoading, mutate };
 }
 export interface GetCryptoResponse {
     source: string;
