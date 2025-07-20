@@ -7,9 +7,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-    const { data } = useGetCrypto();
+    const { data: success, error, isLoading } = useGetCrypto();
     const cols = [
-        "Market Cap Rank",
+        "MCP",
         "Logo",
         "Coin Name",
         "Current Price",
@@ -36,12 +36,25 @@ function Index() {
         </div>
     );
 
+    const CompState = {
+        success: <DataTable cols={cols} data={success?.data ?? []} />,
+        isLoading: Fallback,
+        error: (
+            <div className="">
+                <p>Failed to load data. Please try again later</p>
+            </div>
+        ),
+    };
+
     return (
         <section className="container">
             <h1>Coin Trader</h1>
             <p>View current crypto prices below.</p>
+            <h2>Top 100 Crypto currencies by Market Cap Rank (MCP)</h2>
             <div className="data-table scrollbar scrollbar--thin">
-                {data ? <DataTable cols={cols} data={data.data} /> : Fallback}
+                {success && CompState.success}
+                {error && CompState.error}
+                {isLoading && CompState.isLoading}
             </div>
         </section>
     );
